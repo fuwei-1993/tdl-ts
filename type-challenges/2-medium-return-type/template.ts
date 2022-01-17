@@ -1,0 +1,1 @@
+type MyReturnType<T> = T extends (args: boolean, ...restArgs: any[] ) => infer S ? S : never
