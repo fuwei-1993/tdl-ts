@@ -2,8 +2,6 @@
 
 type Permutation<T, K = T> = [T] extends [never] ? []: K extends K ? [K, ...Permutation<Exclude<T, K>>] : never
 
-type a = Permutation<'1' | '2' | '3'>
-
 function assertNever<T>(value: T extends never ? true : false) {}
 /** @ts-ignore */
 assertNever<string>(true) // 类型“true”的参数不能赋给类型“false”的参数。
