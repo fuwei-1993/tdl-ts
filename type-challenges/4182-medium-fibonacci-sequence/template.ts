@@ -48,9 +48,7 @@ type Fibonacci<
   ? V
   : Fibonacci<T, [any, ...U], P, Add<V & number, P & number>>
 
-
-type a <T extends number, U extends unknown[] = [unknown], V = 1, P = 1> = U extends {length: T} ? V : a<T, [unknown, ...U], P,  Add<V & number, P & number>>
-
+// 以下为js实现
 function _makeArray(len: number) {
   if (len < 10) return new Array(len).fill(0)
   return []
@@ -76,4 +74,11 @@ function dec(target: string, result: unknown[] = []): unknown[] {
   const firstNum = Number(strArr.shift())
 
   return dec(strArr.join(''), [...make10(result), ..._makeArray(firstNum)])
+}
+
+function fibonacci(target: number, calc = [0], prev = 1, result = 1): number {
+  if(target <= 0) return 0
+  if(target === calc.length) return prev
+
+  return fibonacci(target, [...calc, 0], result, prev + result )
 }
